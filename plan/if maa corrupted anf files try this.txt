@@ -1,0 +1,43 @@
+It looks like your project dependencies are corrupted or missing. This is causing the MODULE_NOT_FOUND errors (e.g., missing globby, styled-jsx, cross-spawn).
+
+⚠️ Important Warning: OneDrive Issue I see your project is located in ~/OneDrive/Desktop/planner. OneDrive is notorious for breaking Node.js projects. OneDrive tries to sync the thousands of files inside node_modules to the cloud, often locking them or removing them from your local disk to save space (Files On-Demand). This is likely why your computer can't find specific files like cross-spawn.
+
+🛠️ The Fix
+We need to completely clean your installation and reinstall everything fresh. Please run these commands in your terminal one by one:
+
+1. Clean the project
+Remove the existing node_modules and lock file to ensure a clean slate.
+
+Bash
+
+rm -rf node_modules
+rm -rf pnpm-lock.yaml
+rm -rf .next
+(If rm -rf doesn't work in your specific terminal, you can manually delete the node_modules folder and pnpm-lock.yaml file from your file explorer).
+
+2. Reinstall Dependencies
+This will download all the missing packages correctly.
+
+Bash
+
+pnpm install
+3. Generate Database Client
+Since this is a fresh install, we need to regenerate the Prisma client so the app knows how to talk to the database.
+
+Bash
+
+pnpm db:generate
+4. Push Database Schema (Optional but recommended)
+Now try the command that failed earlier to ensure your database is in sync.
+
+Bash
+
+pnpm db:push
+5. Start the Server
+Now try running the development server again.
+
+Bash
+
+pnpm dev
+💡 Recommendation for the Future
+If you continue to have issues, move your project folder OUT of OneDrive. Move it to a local folder like C:\Projects\planner or C:\Users\Ryan Ranada\planner (outside of the OneDrive folder). This prevents the cloud sync from corrupting your dependency files.

@@ -1,0 +1,29 @@
+{
+  "name": "create-t3-turbo",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:pull": "turbo run db:pull",
+    "db:generate": "turbo run db:generate",
+    "db:push": "dotenv -- turbo run db:push",
+    "db:studio": "dotenv -- turbo run studio"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^11.0.0",
+    "eslint-config-custom": "*",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

@@ -1,0 +1,43 @@
+File Path,Purpose
+
+-apps/web/src/app/page.tsx,
+"The Entrance. It shows the ""Welcome to the Pub"" screen if you are logged out, or the ""Draft New Plan"" 
+form if you are logged in."
+
+-apps/web/src/app/login/page.tsx,
+"Open Tab (Login). Your custom, dark-themed login screen that replaces the default white one."
+
+-apps/web/src/app/register/page.tsx,
+Join Club (Register). The sign-up form styled like a VIP list.
+
+-apps/web/src/app/events/[id]/page.tsx,
+"The Dashboard. The main screen you see when managing an event. It holds the ""Tab"" (Budget), ""Patrons"" 
+(Guests), and ""Jukebox"" (Spotify)."
+
+-apps/web/src/app/events/[id]/summary/page.tsx,
+"The Invoice. The read-only receipt shown after you click ""Close Tab"". It is optimized for printing."
+
+-apps/web/src/components/SeatMap.tsx,
+Seating Grid. The interactive 4x4 table map. It handles the logic for clicking a seat and assigning a guest 
+to it.
+
+-apps/web/src/components/SpotifySearch.tsx,
+Jukebox Search. The input bar that lets users search for songs and add them to the list.
+
+-apps/web/src/components/ClearableForms.tsx,
+"Smart Inputs. Contains GuestForm, ExpenseForm, and TaskForm. These define the input boxes that automatically
+clear themselves after you hit enter."
+
+-apps/web/src/components/SignOutButton.tsx,
+"Logout Logic. A small component that handles the ""Sign Out"" click to ensure it redirects properly without 
+errors."
+
+-apps/web/src/app/layout.tsx,
+The Frame. Wraps every single page in the app. It applies the global background texture and forces the text 
+color to white.
+
+-apps/web/tailwind.config.ts,
+"The Palette. Defines your custom colors (pub-gold, pub-charcoal, pub-wood) so Tailwind knows what they are."
+
+
+

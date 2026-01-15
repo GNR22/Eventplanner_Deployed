@@ -1,0 +1,41 @@
+# Git
+.git
+
+# Dependencies (Vercel installs these fresh)
+node_modules
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Build Outputs & Caches
+.next
+.turbo
+dist
+build
+out
+
+# Environment Variables (Security Risk if uploaded)
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing & Docs
+coverage
+cypress
+test
+tests
+spec
+specs
+README.md
+LICENSE
+
+# IDE / System
+.vscode
+.idea
+.DS_Store
+Thumbs.db

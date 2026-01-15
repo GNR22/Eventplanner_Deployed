@@ -1,0 +1,43 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "**/.env.*local"
+  ],
+  "globalEnv": [
+    "NODE_ENV",
+    "VERCEL_URL",
+    "RENDER_INTERNAL_HOSTNAME",
+    "DATABASE_URL",
+    "PORT"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**"
+      ]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "studio": {        
+      "cache": false,   
+      "persistent": true, 
+      "env": [
+        "DATABASE_URL" 
+      ]
+    },
+    "dev": {
+      "cache": false
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
+    }
+  }
+}

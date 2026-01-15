@@ -1,0 +1,19 @@
+type in root 
+
+cd plan 
+pnpm dev 
+
+goto localhost3000
+or copy this
+
+http://localhost:3000
+
+
+If ports 3000 is taken kill it it should 3000
+ run to kill all ports
+ cd event/apps/nextjs
+ type: 
+ taskkill //F //IM node.exe 
+
+ 
+ 

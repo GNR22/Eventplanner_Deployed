@@ -1,0 +1,34 @@
+# --- Dependencies ---
+node_modules
+.pnpm-store
+
+# --- Next.js / Build Outputs ---
+.next
+dist
+build
+out
+
+# --- Environment Variables (CRITICAL) ---
+.env
+.env.*
+!.env.example
+
+# --- Turborepo ---
+.turbo
+
+# --- Vercel ---
+.vercel
+
+# --- Logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- IDEs / System ---
+.idea
+.vscode
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

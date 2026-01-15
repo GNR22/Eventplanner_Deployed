@@ -1,0 +1,115 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// --- AUTHENTICATION ---
+model Account {
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String? @db.Text
+    session_state     String?
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+    id            String    @id @default(cuid())
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String?
+    password      String?
+    accounts      Account[]
+    sessions      Session[]
+    events        Event[]
+}
+
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+    @@unique([identifier, token])
+}
+
+// --- EVENT LOGIC ---
+model Event {
+    id          Int      @id @default(autoincrement())
+    name        String
+    budgetLimit Float    @default(0) @map("budget_limit")
+    date        DateTime? @map("event_date")
+    location    String?
+    status      String   @default("PLANNING") // 'PLANNING' or 'DONE'
+    
+    ownerId     String   @map("owner_id")
+    owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+    guests      Guest[]
+    tasks       Task[]
+    expenses    Expense[]
+    tracks      Track[]
+
+    createdAt   DateTime @default(now()) @map("created_at")
+    updatedAt   DateTime @updatedAt @map("updated_at")
+
+    @@map("event")
+}
+
+model Guest {
+    id         Int     @id @default(autoincrement())
+    name       String
+    status     String  @default("invited")
+    seatNumber String? @map("seat_number")
+    eventId    Int
+    event      Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    @@map("guest")
+}
+
+model Task {
+    id      Int     @id @default(autoincrement())
+    title   String
+    isDone  Boolean @default(false)
+    eventId Int
+    event   Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    @@map("task")
+}
+
+model Expense {
+    id      Int    @id @default(autoincrement())
+    item    String
+    cost    Float
+    eventId Int
+    event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    @@map("expense")
+}
+
+model Track {
+    id        Int     @id @default(autoincrement())
+    title     String
+    artist    String
+    spotifyId String  @map("spotify_id")
+    albumArt  String? @map("album_art")
+    eventId   Int
+    event     Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    @@map("track")
+}

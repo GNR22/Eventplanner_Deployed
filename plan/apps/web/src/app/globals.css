@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pub Theme Scrollbar */
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #2C2C2C; /* pub-charcoal */
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #FFB300; /* pub-gold */
+    border-radius: 4px;
+    border: 2px solid #2C2C2C;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #FFA000;
+  }
+}
+
+html, body {
+  height: 100%;
+}

@@ -1,0 +1,64 @@
+Here are the instructions to set up your PostgreSQL database using Neon.
+
+Step 1: Create a Neon Project
+Go to Neon.tech and Sign Up or Log In.
+
+Click the "New Project" button.
+
+Name your project (e.g., event-planner).
+
+Region: Select the region closest to you (e.g., Singapore ap-southeast-1 or US East).
+
+Postgres Version: You can leave this as the default (usually 15 or 16).
+
+Click Create Project.
+
+Step 2: Get Your Connection String
+Once the project is created, you will be taken to the Dashboard.
+
+Look for the "Connection Details" section.
+
+Ensure you are on the "Prisma" tab (if available) or just standard "postgres".
+
+Pooled Connection:
+
+Uncheck "Pooled connection" for now (Direct connections are simpler for initial setup with Prisma).
+
+Note: If you deploy to Vercel later, you might want to use the pooled string, but for local dev, direct is fine.
+
+Copy the entire connection string. It will look like this: postgres://alex:AbC123_@ep-cool-frog-123456.us-east-2.aws.neon.tech/neondb?sslmode=require
+
+Step 3: Add to Your Project
+Open your project in VS Code.
+Open the file apps/web/.env.
+
+Find the DATABASE_URL line and paste your connection string inside the quotes:
+
+Bash
+
+# apps/web/.env
+DATABASE_URL="postgres://alex:AbC123_@ep-cool-frog-123456.us-east-2.aws.neon.tech/neondb?sslmode=require"
+Step 4: Push Your Schema
+Now you need to create the tables in your new Neon database based on your Prisma code.
+
+Open your terminal in the root folder of your project.
+
+Run the generation command (this updates your node_modules with the new schema):
+
+Bash
+pnpm db:generate
+Run the push command (this actually creates the tables in Neon):
+
+Bash
+pnpm db:push
+
+
+Step 5: Verify
+Run the Prisma Studio command:
+
+Bash
+
+pnpm db:studio
+It will open a webpage at http://localhost:5555.
+
+If you see tabs for User, Event, Guest, etc., your database is set up and connected!

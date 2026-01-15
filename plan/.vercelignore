@@ -3,7 +3,7 @@
 
 # Dependencies (Vercel installs these fresh)
 node_modules
-pnpm-lock.yaml
+
 package-lock.json
 yarn.lock
 
